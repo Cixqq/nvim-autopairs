@@ -607,8 +607,8 @@ M.autopairs_cr = function(bufnr)
                 local end_pair = rule:get_end_pair(cond_opt)
                 return utils.esc(
                     '<CR>'
-                        .. end_pair -- FIXME do i need to re indent twice #118
-                        .. '<CMD>normal! ====<CR><up><end><CR>'
+                    .. end_pair -- FIXME do i need to re indent twice #118
+                    .. '<CMD>normal! ====<CR><up><end><CR>'
                 )
             end
 
@@ -674,7 +674,7 @@ M.autopairs_afterquote = function(line, key_char)
                         end
                         return utils.esc(
                             "<esc><cmd>lua require'nvim-autopairs'.autopairs_closequote_expr()<cr>"
-                                .. append
+                            .. append
                         )
                     end
                 end
@@ -695,10 +695,9 @@ end
 
 M.completion_confirm = function()
     if vim.fn.pumvisible() ~= 0 then
-        return M.esc('<cr>')
-    else
-        return M.autopairs_cr()
+        M.esc("<C-e><CR>")
     end
+    return M.autopairs_cr()
 end
 
 M.map_cr = function()
